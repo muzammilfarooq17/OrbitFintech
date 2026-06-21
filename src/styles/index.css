@@ -1,0 +1,29 @@
+@import "tailwindcss";
+
+@theme {
+  /* Mapped Solid Colors from your Figma Panels */
+  --color-orbit-bg: #030712;       /* DARD BACKGROUND COLOR */
+  --color-orbit-card: #151F38;      /* DARK CARDS COLOR */
+  --color-orbit-text: #F8FAFC;      /* DARK TEXT COLOR */
+  --color-orbit-extra: #38BDF8;     /* EXTRA COLOR */
+  --color-orbit-accent: #1E3A8A;    /* ACCENT COLOR */
+  --color-orbit-primary: #1F4FD8;   /* PRIMARY COLOR */
+
+  /* Mapped Linear Gradients from your Figma Panel Images */
+  --background-image-grad-ldhr: linear-gradient(180deg, #2563EB 0%, #111827 100%);
+  --background-image-grad-sasa: linear-gradient(180deg, #0D0043 0%, #E7E2FF 100%);
+  --background-image-grad-card: linear-gradient(180deg, #5A31FF 0%, #3A2592 100%);
+  --background-image-grad-faru: linear-gradient(180deg, #05091C 0%, #5A31FF 49%, #05091C 100%);
+  --background-image-grad-55: linear-gradient(180deg, #0042FF 0%, #05091C 100%);
+  --background-image-grad-qw: linear-gradient(180deg, #7350FF 0%, rgba(5, 9, 28, 0) 100%);
+}
+
+body {
+  background-color: #030712;
+  /* 105deg angle creates that exact diagonal, natural left-to-right dark blue flow */
+  background-image: linear-gradient(105deg, #0A194E 0%, #050E2E 30%, #030712 85%);
+  background-attachment: fixed;
+  color: var(--color-orbit-text);
+  margin: 0;
+  padding: 0;
+}
