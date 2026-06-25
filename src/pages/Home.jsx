@@ -3,6 +3,8 @@ import { FaRegArrowAltCircleUp } from "react-icons/fa";
 import { FaPlay } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 import { FaArrowRight, FaCheck } from "react-icons/fa";
+import { FiMessageCircle } from "react-icons/fi";
+
 
 import card1 from '../assets/images/Card 1 (1).png';
 import card2 from '../assets/images/Card 2.png';
@@ -452,7 +454,7 @@ const Home = () => {
 
         <FadeUp delay={0.25} className="flex justify-center">
           <Link
-            to="/src/pages/Security.jsx"
+            to="/features"
             className="px-8 py-3 bg-blue-600 text-white font-medium text-[18px] rounded-xl hover:bg-blue-500 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 shadow-[0_4px_20px_rgba(37,99,235,0.3)]"
           >
             Explore Security
@@ -461,7 +463,186 @@ const Home = () => {
 
       </section>
 
+      {/* ─── 6. GET STARTED STEPS SECTION ─── */}
+      <section className="w-full py-20">
+
+        <FadeUp className="text-center mb-14">
+          <h2 className="text-[48px] font-bold text-white tracking-tight mb-3">
+            Get Started in 3 Simple Steps
+          </h2>
+          <p className="text-[19px] text-gray-300">
+            Get started in minutes — no paperwork, no stress
+          </p>
+        </FadeUp>
+
+        <div className="flex flex-col gap-10">
+
+          {/* Step 01 — left aligned */}
+          <motion.div
+            className="flex flex-col gap-4"
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.6, delay: 0, ease: 'easeOut' }}
+          >
+            <div className="flex items-center gap-3">
+              <div className="w-1 h-8 bg-blue-600 rounded-full" />
+              <span className="text-[22px] font-bold text-white">Step 01</span>
+            </div>
+            <div className="w-[72%] bg-[#0B1224] border border-white/[0.06] rounded-2xl p-8 hover:border-blue-600/30 transition-all duration-300 hover:shadow-[0_0_30px_rgba(37,99,235,0.08)]">
+              <h3 className="text-[20px] font-semibold text-blue-400 mb-3">Sign up</h3>
+              <p className="text-[16px] text-gray-300 leading-relaxed">
+                Create your account in minutes with a seamless onboarding experience designed for speed, security, and simplicity.
+              </p>
+            </div>
+          </motion.div>
+
+          {/* Step 02 — right aligned */}
+          <motion.div
+            className="flex flex-col items-end gap-4"
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.6, delay: 0.15, ease: 'easeOut' }}
+          >
+            <div className="flex items-center gap-3">
+              <span className="text-[22px] font-bold text-white">Step 02</span>
+              <div className="w-1 h-8 bg-blue-600 rounded-full" />
+            </div>
+            <div className="w-[72%] bg-[#0B1224] border border-white/[0.06] rounded-2xl p-8 hover:border-blue-600/30 transition-all duration-300 hover:shadow-[0_0_30px_rgba(37,99,235,0.08)]">
+              <h3 className="text-[20px] font-semibold text-blue-400 mb-3">Payment Method</h3>
+              <p className="text-[16px] text-gray-300 leading-relaxed">
+                Link your card or bank account safely using encrypted, bank-grade technology you can trust.
+              </p>
+            </div>
+          </motion.div>
+
+          {/* Step 03 — left aligned */}
+          <motion.div
+            className="flex flex-col gap-4"
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.6, delay: 0.3, ease: 'easeOut' }}
+          >
+            <div className="flex items-center gap-3">
+              <div className="w-1 h-8 bg-blue-600 rounded-full" />
+              <span className="text-[22px] font-bold text-white">Step 03</span>
+            </div>
+            <div className="w-[72%] bg-[#0B1224] border border-white/[0.06] rounded-2xl p-8 hover:border-blue-600/30 transition-all duration-300 hover:shadow-[0_0_30px_rgba(37,99,235,0.08)]">
+              <h3 className="text-[20px] font-semibold text-blue-400 mb-3">Start Sending</h3>
+              <p className="text-[16px] text-gray-300 leading-relaxed">
+                Send money instantly, track every transaction, and experience banking without delays or limits.
+              </p>
+            </div>
+          </motion.div>
+
+        </div>
+
+        <FadeUp delay={0.3} className="flex justify-center mt-14">
+          <Link
+            to="/signup"
+            className="px-8 py-3 bg-blue-600 text-white font-medium text-[18px] rounded-xl hover:bg-blue-500 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 shadow-[0_4px_20px_rgba(37,99,235,0.3)]"
+          >
+            Get Started Free
+          </Link>
+        </FadeUp>
+
+      </section>
+
+      {/* ─── 7. FAQ SECTION ─── */}
+      <section className="w-full py-20">
+
+        <FadeUp className="text-center mb-15">
+          <h2 className="text-[46px] font-bold text-white tracking-tight mb-0">
+            Frequently Asked Questions
+          </h2>
+          <p className="text-[22px] text-gray-300">
+            Quick answers to common questions about ORBIT
+          </p>
+        </FadeUp>
+
+        <div className="grid grid-cols-2 gap-x-10 gap-y-33">
+          {[
+            {
+              num: '01',
+              q: 'Can I change my plan anytime?',
+              a: 'Yes, you can upgrade or downgrade your plan at any time directly from your account settings. Changes take effect immediately, so you always stay in control without any interruption to your services.',
+            },
+            {
+              num: '02',
+              q: 'Is there a free trial available?',
+              a: 'Absolutely. We offer a 30-day free trial on our Premium plan so you can explore advanced features like unlimited transfers, analytics, and multi-currency accounts before committing.',
+            },
+            {
+              num: '03',
+              q: 'Are there any hidden fees?',
+              a: 'No. Transparency is at the core of ORBIT. What you see is what you pay—no hidden charges, no surprise deductions, and no unnecessary fees at any stage.',
+            },
+            {
+              num: '04',
+              q: 'How secure is my money and data?',
+              a: 'Your security is our top priority. ORBIT uses bank-grade encryption, two-factor authentication, and real-time fraud monitoring to keep your funds and personal information fully protected.',
+            },
+            {
+              num: '05',
+              q: 'Which countries and currencies are supported?',
+              a: 'ORBIT supports users in 150+ countries with access to multiple currencies. You can send, receive, and hold money globally with real exchange rates and zero conversion fees on eligible plans.',
+            },
+            {
+              num: '06',
+              q: 'What payment methods are supported?',
+              a: 'We support all major debit and credit cards, as well as bank transfers in supported regions, making it easy to add funds and manage your account seamlessly.',
+            },
+            {
+              num: '07',
+              q: 'Can I cancel my subscription anytime?',
+              a: "Yes. There's no long-term commitment. You can cancel your subscription at any time, and you'll continue to have access until the end of your billing cycle.",
+            },
+            {
+              num: '08',
+              q: 'Is my money safe with ORBIT?',
+              a: 'Yes. ORBIT uses bank-grade encryption, real-time fraud monitoring, and multi-layer security to keep your money fully protected at all times.',
+            },
+          ].map((faq, i) => (
+            <motion.div
+              key={faq.num}
+              className="flex gap-5"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ duration: 0.55, delay: (i % 2) * 0.1 + Math.floor(i / 2) * 0.1, ease: 'easeOut' }}
+            >
+              {/* Number badge */}
+              <div className="shrink-0 w-18 h-18 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-[22px] shadow-[0_4px_15px_rgba(37,99,235,0.45)]">
+                {faq.num}
+              </div>
+
+              {/* Content */}
+              <div>
+                <h3 className="text-[28px] font-semibold text-white mb-4">{faq.q}</h3>
+                <p className="text-[22px] text-gray-400 leading-relaxed">{faq.a}</p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        <FadeUp delay={0.3} className="flex justify-center mt-14">
+         
+<Link
+  to="/contact"
+  className="group px-8 py-3 mt-11 bg-blue-600 text-white font-medium text-[18px] rounded-xl hover:bg-blue-500 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 shadow-[0_4px_20px_rgba(37,99,235,0.3)] flex items-center justify-center"
+>
+  <span>Ask a Question</span>
+
+  <FiMessageCircle className="ml-0 w-0 opacity-0 overflow-hidden transition-all duration-300 group-hover:ml-2 group-hover:w-5 group-hover:opacity-100" />
+</Link>
+        </FadeUp>
+
+      </section>
+
     </>
+
   );
 };
 
