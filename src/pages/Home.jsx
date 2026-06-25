@@ -205,7 +205,7 @@ const Home = () => {
             </Link>
 
             <Link
-              to="/demo"
+              to="/src/pages/VideoDemo.jsx"
               className="group px-6 ml-6 py-3 bg-transparent text-white border border-gray-700 font-medium text-[20px] rounded-xl hover:bg-white/5 hover:border-gray-500 hover:scale-[1.03] active:scale-[0.97] transition-all duration-300 flex items-center justify-center"
             >
               <span>Watch Demo</span>
@@ -450,7 +450,7 @@ const Home = () => {
 
         <FadeUp delay={0.3} className="flex justify-center mt-14">
   <Link
-    to="/features"
+    to="/src/pages/Stats.jsx"
     className="group px-8 py-3 bg-blue-800 text-white font-medium text-[22px] rounded-xl hover:bg-blue-500 hover:scale-[1.03] active:scale-[0.97] transition-all duration-300 shadow-[0_4px_20px_rgba(37,99,235,0.3)] flex items-center justify-center"
   >
     <span>Learn More</span>
@@ -627,12 +627,12 @@ const Home = () => {
 
         <FadeUp delay={0.3} className="flex justify-center mt-14">
           <Link
-            to="/contact"
-            className="group px-8 py-3 mt-11 bg-blue-600 text-white font-medium text-[18px] rounded-xl hover:bg-blue-500 hover:scale-[1.02] active:scale-[0.97] transition-all duration-300 shadow-[0_4px_20px_rgba(37,99,235,0.3)] flex items-center justify-center"
-          >
-            <span>Ask a Question</span>
-            <FiMessageCircle className="ml-0 w-0 opacity-0 overflow-hidden transition-all duration-300 group-hover:ml-2 group-hover:w-5 group-hover:opacity-100" />
-          </Link>
+  to="/ask-question" // <-- Sahi URL path jo AppRoutes mein defined hai
+  className="group px-8 py-3 mt-11 bg-blue-600 text-white font-medium text-[18px] rounded-xl hover:bg-blue-500 hover:scale-[1.02] active:scale-[0.97] transition-all duration-300 shadow-[0_4px_20px_rgba(37,99,235,0.3)] flex items-center justify-center"
+>
+  <span>Ask a Question</span>
+  <FiMessageCircle className="ml-0 w-0 opacity-0 overflow-hidden transition-all duration-300 group-hover:ml-2 group-hover:w-5 group-hover:opacity-100" />
+</Link>
         </FadeUp>
       </section>
 
