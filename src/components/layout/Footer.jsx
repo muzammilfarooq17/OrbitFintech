@@ -2,7 +2,7 @@ import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn, FaYoutube } from 're
 
 const Footer = () => {
   return (
-    <footer className="w-full bg-[#080B11] text-white border-t border-zinc-800/60 mt-auto relative overflow-hidden">
+    <footer className="w-full  text-white border-t border-zinc-800/60 mt-auto relative overflow-hidden">
       
       {/* Dynamic Background Mesh / Ambient Aura */}
       <div className="absolute top-0 right-1/4 w-[600px] h-[300px] bg-gradient-to-b from-cyan-500/10 to-transparent blur-[150px] pointer-events-none rounded-full" />
