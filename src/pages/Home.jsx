@@ -12,6 +12,12 @@ import frame1 from '../assets/frames/Frame1.png';
 import frame2 from '../assets/frames/Frame2.png';
 import frame3 from '../assets/frames/Frame3.png';
 
+import securityImg from '../assets/frames/Security.png';
+import tickImg from '../assets/frames/Tick.png';
+import faceImg from '../assets/frames/Face.png';
+
+import statsImg from '../assets/images/Rectangle 28.png';
+
 // ── Reusable scroll-reveal wrapper ──────────────────────────────
 const FadeUp = ({ children, delay = 0, className = '' }) => (
   <motion.div
@@ -59,10 +65,39 @@ const plans = [
   },
 ];
 
+// ── Stats section data ────────────────────────────────────────────
+const statsData = [
+  {
+    title: '2M+ Active Users',
+    points: [
+      'Billions moved with complete confidence',
+      'Proven at massive scale',
+      'Securely transferring value worldwide',
+    ],
+  },
+  {
+    title: '$5B+ Transferred',
+    points: [
+      'Trusted by millions every day',
+      'Chosen by a growing global community',
+      'Millions managing money smarter',
+    ],
+  },
+  {
+    title: '150+ Countries',
+    points: [
+      'Seamless payments across borders',
+      'Truly global financial access',
+      'One app, worldwide reach',
+    ],
+  },
+];
+
 const Home = () => {
   return (
     <>
-      {/* ─── HERO SECTION ─── */}
+
+      {/* ─── 1. HERO SECTION ─── */}
       <div className="w-full min-h-[calc(100vh-80px)] flex items-center justify-between py-8 gap-8 overflow-hidden select-none">
 
         {/* LEFT CONTENT */}
@@ -145,47 +180,41 @@ const Home = () => {
           </motion.div>
         </div>
 
-        {/* RIGHT CONTENT — Cards (Glass & Blur Effects Removed completely) */}
+        {/* RIGHT CONTENT — Cards */}
         <motion.div
-          className="w-[50%] relative h-[790px] mr-29 flex items-center justify-center bg-transparent backdrop-blur-none"
+          className="w-[50%] relative h-[790px] mr-29 flex items-center justify-center"
           initial={{ opacity: 0, x: 60 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6, delay: 0.7, ease: "easeOut" }}
+          transition={{ duration: 0.6, delay: 0.7, ease: 'easeOut' }}
         >
-          {/* Top Blue Card */}
-          <div className="absolute -top-22 left-21 w-[600px] -rotate-[1deg] z-10 transition-all duration-500 hover:-translate-y-4 hover:-rotate-[5deg]">
-            <img
-              src={card2}
-              alt="Orbit Blue Card"
-              className="w-full object-contain rounded-[24px] shadow-lg"
-            />
-          </div>
+          <motion.div
+            className="absolute -top-22 left-21 w-[600px] -rotate-[1deg] z-10 cursor-pointer"
+            whileHover={{ rotate: -5, y: -14, transition: { duration: 0.35, ease: 'easeOut' } }}
+          >
+            <img src={card2} alt="Orbit Blue Card" className="w-full object-contain rounded-[24px]" />
+          </motion.div>
 
-          {/* Main Black Card */}
-          <div className="absolute top-[60px] left-[150px] w-[600px] z-30 transition-all duration-500 hover:-translate-y-6 hover:rotate-2">
-            <img
-              src={card1}
-              alt="Orbit Premium Card"
-              className="w-full object-contain rounded-[24px] shadow-xl"
-            />
-          </div>
+          <motion.div
+            className="absolute top-[60px] left-[150px] w-[600px] z-30 cursor-pointer"
+            whileHover={{ rotate: 2, y: -18, transition: { duration: 0.35, ease: 'easeOut' } }}
+          >
+            <img src={card1} alt="Orbit Premium Card" className="w-full object-contain rounded-[24px]" />
+          </motion.div>
 
-          {/* Bottom Blue Card */}
-          <div className="absolute -bottom-10 left-20 w-[600px] rotate-[1deg] z-20 transition-all duration-500 hover:translate-y-3 hover:rotate-[14deg]">
-            <img
-              src={card3}
-              alt="Orbit Digital Card"
-              className="w-full object-contain rounded-[24px] shadow-lg"
-            />
-          </div>
+          <motion.div
+            className="absolute -bottom-10 left-5 w-[600px] z-20 cursor-pointer"
+            whileHover={{ rotate: 4, y: 10, transition: { duration: 0.35, ease: 'easeOut' } }}
+          >
+            <img src={card3} alt="Orbit Digital Card" className="w-full object-contain rounded-[24px]" />
+          </motion.div>
         </motion.div>
 
       </div>
 
-      {/* ─── FEATURES SECTION ─── */}
+      {/* ─── 2. FEATURES SECTION ─── */}
       <section className="w-full py-20">
-        <FadeUp className="text-center mb-12">
-          <h2 className="text-[48px] font-bold text-white tracking-tight mb-3">
+        <FadeUp className="text-center mb-33">
+          <h2 className="text-[48px] mt-8 font-bold text-white tracking-tight mb-3">
             Everything You Need in One App
           </h2>
           <p className="text-[20px] text-gray-300">
@@ -193,10 +222,10 @@ const Home = () => {
           </p>
         </FadeUp>
 
-        <div className="grid grid-cols-3 gap-23 mb-23">
+        <div className="grid grid-cols-3 gap-29 mb-18">
           {[
-            { title: 'Instant Transfer', desc: 'Understand Your Spending With Smart Insights', img: frame1, alt: 'Instant Transfer' },
-            { title: 'Smart Analytics', desc: 'Understand Your Spending With Smart Insights', img: frame2, alt: 'Smart Analytics' },
+            { title: 'Instant Transfer',    desc: 'Understand Your Spending With Smart Insights',   img: frame1, alt: 'Instant Transfer' },
+            { title: 'Smart Analytics',     desc: 'Understand Your Spending With Smart Insights',   img: frame2, alt: 'Smart Analytics' },
             { title: 'Bank Level Security', desc: 'Your Payments Protected With Advanced Security', img: frame3, alt: 'Bank Level Security' },
           ].map((card, i) => (
             <motion.div
@@ -209,7 +238,7 @@ const Home = () => {
             >
               <h3 className="text-[23px] text-center font-semibold text-blue-500">{card.title}</h3>
               <p className="text-[21px] text-gray-300 text-center leading-relaxed">{card.desc}</p>
-              <div className="mt-9 mb-6 pb-0 flex items-center justify-center h-[170px]">
+              <div className="mt-9 mb-6 flex items-center justify-center h-[170px]">
                 <img src={card.img} alt={card.alt} className="h-full object-contain opacity-90" />
               </div>
             </motion.div>
@@ -227,9 +256,9 @@ const Home = () => {
         </FadeUp>
       </section>
 
-      {/* ─── PRICING SECTION ─── */}
-      <section className="w-full py-20">
-        <FadeUp className="text-center mb-14">
+      {/* ─── 3. PRICING SECTION ─── */}
+      <section className="w-full py-6">
+        <FadeUp className="text-center mb-19">
           <h2 className="text-[48px] font-bold text-white tracking-tight mb-3">
             Pay Only for What You Need
           </h2>
@@ -260,9 +289,7 @@ const Home = () => {
                 </div>
               )}
 
-              <h3 className="text-[26px] font-bold mb-3 text-white">
-                {plan.name}
-              </h3>
+              <h3 className="text-[26px] font-bold mb-3 text-white">{plan.name}</h3>
 
               <div className="flex items-baseline gap-1 mb-1">
                 <span className="text-[28px] font-extrabold text-white">Price: {plan.price}</span>
@@ -303,6 +330,137 @@ const Home = () => {
           ))}
         </div>
       </section>
+
+      {/* ─── 4. OUR CURRENT STATS SECTION ─── */}
+      <section className="w-full py-20">
+        <FadeUp className="text-center mb-14">
+          <h2 className="text-[48px] font-bold text-white tracking-tight">
+            Our Current Stats
+          </h2>
+        </FadeUp>
+
+        <div className="flex items-stretch gap-10">
+
+          {/* LEFT — stat items */}
+          <div className="w-[48%] flex flex-col justify-between gap-10">
+            {statsData.map((stat, i) => (
+              <motion.div
+                key={stat.title}
+                className="flex gap-4"
+                initial={{ opacity: 0, x: -40 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.6, delay: i * 0.15, ease: 'easeOut' }}
+              >
+                <div className="w-[4px] rounded-full bg-blue-600 shrink-0" />
+                <div>
+                  <h3 className="text-[22px] font-bold text-white mb-3">{stat.title}</h3>
+                  <ul className="flex flex-col gap-2">
+                    {stat.points.map((pt) => (
+                      <li key={pt} className="flex items-start gap-2 text-[16px] text-gray-300">
+                        <span className="text-gray-400 mt-[2px]">→</span>
+                        {pt}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* RIGHT — image */}
+          <motion.div
+            className="w-[52%] relative"
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.7, delay: 0.2, ease: 'easeOut' }}
+          >
+            <div className="absolute -top-4 left-4 z-10">
+              <span className="bg-blue-600 text-white text-[15px] font-semibold px-5 py-2.5 rounded-xl shadow-[0_4px_20px_rgba(37,99,235,0.5)]">
+                Loved by Millions Worldwide
+              </span>
+            </div>
+            <img
+              src={statsImg}
+              alt="Loved by Millions Worldwide"
+              className="w-full h-full object-cover rounded-2xl"
+            />
+          </motion.div>
+
+        </div>
+
+        <FadeUp delay={0.3} className="flex justify-center mt-14">
+          <Link
+            to="/about"
+            className="px-8 py-3 bg-blue-600 text-white font-medium text-[18px] rounded-xl hover:bg-blue-500 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 shadow-[0_4px_20px_rgba(37,99,235,0.3)]"
+          >
+            Learn More
+          </Link>
+        </FadeUp>
+      </section>
+
+      {/* ─── 5. ENTERPRISE SECURITY SECTION ─── */}
+      <section className="w-full py-20">
+
+        <FadeUp className="text-center mb-12">
+          <h2 className="text-[48px] font-bold text-white tracking-tight mb-3">
+            Enterprise-Level Security for Everyone
+          </h2>
+          <p className="text-[20px] text-gray-300">
+            Your money and data are protected with industry-leading safeguards.
+          </p>
+        </FadeUp>
+
+        <div className="grid grid-cols-3 gap-6 mb-12">
+          {[
+            {
+              title: 'End-to-End Encryption',
+              desc: 'All transactions are secured with 256-bit encryption.',
+              img: securityImg,
+              alt: 'Encryption',
+            },
+            {
+              title: 'Multi-Layer Protection',
+              desc: 'Two-factor authentication for every login and action.',
+              img: tickImg,
+              alt: 'Multi-Layer Protection',
+            },
+            {
+              title: 'Smart Fraud Monitoring',
+              desc: 'AI detects suspicious activity in real time.',
+              img: faceImg,
+              alt: 'Fraud Monitoring',
+            },
+          ].map((card, i) => (
+            <motion.div
+              key={card.title}
+              className="bg-[#0B1224] border border-white/[0.06] rounded-2xl p-10 flex flex-col gap-3 hover:border-blue-600/30 transition-all duration-300 hover:shadow-[0_0_30px_rgba(37,99,235,0.08)]"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.55, delay: i * 0.12, ease: 'easeOut' }}
+            >
+              <h3 className="text-[22px] text-center font-semibold text-blue-400">{card.title}</h3>
+              <p className="text-[17px] text-gray-300 text-center leading-relaxed">{card.desc}</p>
+              <div className="mt-8 flex items-center justify-center h-[170px]">
+                <img src={card.img} alt={card.alt} className="h-full object-contain opacity-90" />
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        <FadeUp delay={0.25} className="flex justify-center">
+          <Link
+            to="/src/pages/Security.jsx"
+            className="px-8 py-3 bg-blue-600 text-white font-medium text-[18px] rounded-xl hover:bg-blue-500 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 shadow-[0_4px_20px_rgba(37,99,235,0.3)]"
+          >
+            Explore Security
+          </Link>
+        </FadeUp>
+
+      </section>
+
     </>
   );
 };
