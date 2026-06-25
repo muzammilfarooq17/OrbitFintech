@@ -30,7 +30,7 @@ const AppRoutes = () => {
                     <Navbar />
 
                     {/* MAIN — max-w-7xl, px-12 on all sizes, centered */}
-                    <main className="flex-grow w-full px-20 pt-[60px]">
+                    <main className="flex-grow w-full px-20 pt-[80px]">
                       <Home />
                     </main>
 
