@@ -1,5 +1,6 @@
-import  { useState } from 'react';
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../components/context/AuthContext';
 
 const SignUp = () => {
   const [firstName, setFirstName] = useState('');
@@ -7,18 +8,31 @@ const SignUp = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
+  const { signup } = useAuth();
 
-  const handleSignUpSubmit = (e) => {
+  const handleSignUpSubmit = async (e) => {
     e.preventDefault();
-    alert("Sign Up Successful! (Simple State)");
-    navigate('/login'); // Signup ke baad direct login screen layout trace hoga
+    setError('');
+    setLoading(true);
+
+    try {
+      await signup(email, password);
+      // Agar user details save karni hon tou future mein Firestore bhi lag sakta hai
+      alert("Sign Up Successful!");
+      navigate('/login'); 
+    } catch (err) {
+      setError(err.message.replace("Firebase: ", ""));
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
-    /* h-screen aur w-screen pure browser monitor frame ko fix kar dega */
-    <div className="h-screen  w-screen bg-[#05091c] bg-gradient-to-tr from-[#05091c] via-[#0b153a] to-[#030712] overflow-hidden flex flex-col text-white font-sans min-w-[1280px]">
+    <div className="h-screen w-screen bg-[#05091c] bg-gradient-to-tr from-[#05091c] via-[#0b153a] to-[#030712] overflow-hidden flex flex-col text-white font-sans min-w-[1280px]">
       
       {/* FIXED TOP NAVBAR */}
       <header className="w-full max-w-7xl mx-auto px-16 h-[90px] flex items-center justify-between border-b border-white/10 flex-shrink-0">
@@ -52,6 +66,9 @@ const SignUp = () => {
         <div className="w-[520px] bg-[#0f172a]/90 border border-white/10 rounded-2xl p-8 shadow-2xl shadow-black/60">
           <h2 className="text-2xl font-bold text-center mb-6 tracking-wide text-white">Sign Up</h2>
           
+          {/* Error Message Space */}
+          {error && <div className="mb-4 text-sm text-red-400 bg-red-500/10 border border-red-500/20 p-3 rounded-xl text-center">{error}</div>}
+
           <form onSubmit={handleSignUpSubmit} className="flex flex-col gap-4">
             <div className="flex gap-4 text-left">
               <div className="flex-1 flex flex-col gap-1.5">
@@ -117,9 +134,10 @@ const SignUp = () => {
 
             <button
               type="submit"
-              className="w-full h-12 mt-2 bg-blue-600 hover:bg-blue-500 text-white font-semibold rounded-xl text-[16px] transition active:scale-[0.99] shadow-lg shadow-blue-600/20"
+              disabled={loading}
+              className="w-full h-12 mt-2 bg-blue-600 hover:bg-blue-500 disabled:bg-blue-800 text-white font-semibold rounded-xl text-[16px] transition active:scale-[0.99] shadow-lg shadow-blue-600/20"
             >
-              Sign Up
+              {loading ? "Creating Account..." : "Sign Up"}
             </button>
           </form>
 

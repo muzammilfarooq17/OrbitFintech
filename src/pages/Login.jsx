@@ -1,21 +1,34 @@
-import  { useState } from 'react';
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+// Sahi path yeh hona chahiye:
+import { useAuth } from '../components/context/AuthContext';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
+  const { login } = useAuth();
 
-  const handleLoginSubmit = (e) => {
+  const handleLoginSubmit = async (e) => {
     e.preventDefault();
-    alert("Login Successful! (Simple State)");
-    navigate('/'); // App core home landing state layout redirect
+    setError('');
+    setLoading(true);
+
+    try {
+      await login(email, password);
+      navigate('/'); // Redirect to Core Landing State
+    } catch (err) {
+      setError(err.message.replace("Firebase: ", ""));
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
-    /* h-screen aur w-screen view frame completely full desktop layout monitor ko trace rakhega */
     <div className="h-screen w-screen bg-[#05091c] bg-gradient-to-tr from-[#05091c] via-[#0b153a] to-[#030712] overflow-hidden flex flex-col text-white font-sans min-w-[1280px]">
       
       {/* FIXED TOP NAVBAR */}
@@ -50,6 +63,9 @@ const Login = () => {
         <div className="w-[520px] bg-[#0f172a]/90 border border-white/10 rounded-2xl p-8 shadow-2xl shadow-black/60">
           <h2 className="text-2xl font-bold text-center mb-6 tracking-wide text-white">Login</h2>
           
+          {/* Error Message Space */}
+          {error && <div className="mb-4 text-sm text-red-400 bg-red-500/10 border border-red-500/20 p-3 rounded-xl text-center">{error}</div>}
+
           <form onSubmit={handleLoginSubmit} className="flex flex-col gap-4">
             <div className="flex flex-col gap-1.5 text-left">
               <label className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Enter Your Email</label>
@@ -95,9 +111,10 @@ const Login = () => {
 
             <button
               type="submit"
-              className="w-full h-12 mt-2 bg-blue-600 hover:bg-blue-500 text-white font-semibold rounded-xl text-[16px] transition active:scale-[0.99] shadow-lg shadow-blue-600/20"
+              disabled={loading}
+              className="w-full h-12 mt-2 bg-blue-600 hover:bg-blue-500 disabled:bg-blue-800 text-white font-semibold rounded-xl text-[16px] transition active:scale-[0.99] shadow-lg shadow-blue-600/20"
             >
-              Login
+              {loading ? "Verifying..." : "Login"}
             </button>
           </form>
 
@@ -112,7 +129,7 @@ const Login = () => {
           <div className="flex flex-col gap-3">
             <button 
               type="button"
-              onClick={() => alert("Google Login Triggered")}
+              onClick={() => alert("Google Provider Disable kiya hua hai.")}
               className="w-full h-12 bg-white text-slate-900 hover:bg-slate-100 font-semibold rounded-xl text-[15px] transition flex items-center justify-center gap-3 active:scale-[0.99]"
             >
               <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google logo" className="h-5 w-5" />

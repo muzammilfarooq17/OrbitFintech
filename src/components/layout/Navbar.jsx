@@ -1,10 +1,13 @@
 import { Link, useLocation } from 'react-router-dom';
 import { PiSignInBold } from "react-icons/pi";
-import { FaUser } from "react-icons/fa";
+// FaLayout ko hatakar uski jagah FaColumns use kiya hai jo layout jaisa hi lagta hai
+import { FaUser, FaColumns } from "react-icons/fa"; 
 import { motion } from 'framer-motion';
+import { useAuth } from '../context/AuthContext';
 
 const Navbar = () => {
   const location = useLocation();
+  const { user } = useAuth();
   const isActive = (path) => location.pathname === path;
 
   return (
@@ -66,28 +69,43 @@ const Navbar = () => {
           ))}
         </nav>
 
-        {/* BUTTONS */}
+        {/* CONDITIONALLY RENDERED BUTTONS */}
         <motion.div
           className="flex items-center gap-3"
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.42, ease: 'easeOut' }}
         >
-          <Link
-            to="/signup"
-            className="group px-5 py-2 text-[19px] font-medium bg-blue-600 text-white rounded-xl flex items-center transition-all duration-300 hover:bg-blue-500 select-none"
-          >
-            <span>Sign Up Free</span>
-            <PiSignInBold className="ml-0 w-0 opacity-0 overflow-hidden transition-all duration-300 group-hover:ml-2 group-hover:w-4 group-hover:opacity-100" />
-          </Link>
+          {user ? (
+            /* AGAR USER LOGGED IN HAI TOU YEH BUTTON DIKHEGA */
+            <Link
+              to="/dashboard"
+              className="group px-6 py-2.5 text-[19px] font-medium bg-gradient-to-r from-blue-600 to-cyan-500 text-white rounded-xl flex items-center transition-all duration-300 hover:opacity-90 select-none shadow-[0_0_15px_rgba(37,99,235,0.4)]"
+            >
+              <span>Go to Dashboard</span>
+              {/* Yahan FaColumns Icon inject kardiya */}
+              <FaColumns className="ml-2 w-4 h-4 transition-transform duration-300 group-hover:scale-110" />
+            </Link>
+          ) : (
+            /* AGAR LOGGED IN NHI HAI TOU SIGNUP / LOGIN DIKHEGA */
+            <>
+              <Link
+                to="/signup"
+                className="group px-5 py-2 text-[19px] font-medium bg-blue-600 text-white rounded-xl flex items-center transition-all duration-300 hover:bg-blue-500 select-none"
+              >
+                <span>Sign Up Free</span>
+                <PiSignInBold className="ml-0 w-0 opacity-0 overflow-hidden transition-all duration-300 group-hover:ml-2 group-hover:w-4 group-hover:opacity-100" />
+              </Link>
 
-          <Link
-            to="/login"
-            className="group px-5 py-2 text-[19px] font-medium bg-transparent text-white border border-blue-500 rounded-xl hover:bg-blue-500/10 transition-all duration-300 flex items-center select-none"
-          >
-            <span>Login</span>
-            <FaUser className="ml-0 w-0 opacity-0 overflow-hidden transition-all duration-300 group-hover:ml-3 group-hover:w-4 group-hover:opacity-100 text-blue-500" />
-          </Link>
+              <Link
+                to="/login"
+                className="group px-5 py-2 text-[19px] font-medium bg-transparent text-white border border-blue-500 rounded-xl hover:bg-blue-500/10 transition-all duration-300 flex items-center select-none"
+              >
+                <span>Login</span>
+                <FaUser className="ml-0 w-0 opacity-0 overflow-hidden transition-all duration-300 group-hover:ml-3 group-hover:w-4 group-hover:opacity-100 text-blue-500" />
+              </Link>
+            </>
+          )}
         </motion.div>
 
       </div>
