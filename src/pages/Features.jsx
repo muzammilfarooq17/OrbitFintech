@@ -277,7 +277,7 @@ const Features = () => {
           </div>
 
           <Link
-            to="/src/pages/VideoDemo.jsx"
+            to="/video-demo"
             className="group mt-16 inline-flex items-center bg-blue-600 hover:bg-blue-700 text-white font-semibold text-[17px] py-4 px-10 rounded-xl tracking-wide cursor-pointer shadow-lg shadow-blue-600/20 transition-all duration-300 hover:scale-110 active:scale-95"
           >
             <span>Watch Demo</span>

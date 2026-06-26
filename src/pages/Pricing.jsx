@@ -272,7 +272,7 @@ const PricingSection = () => {
 
         <div className="faq-btn-animate flex justify-center mt-14 opacity-0">
           <Link
-            to="/contact"
+            to="/ask-question"
             className="group px-8 py-3 mt-11 bg-blue-600 text-white font-medium text-[18px] rounded-xl hover:bg-blue-500 hover:scale-[1.02] active:scale-[0.97] transition-all duration-300 shadow-[0_4px_20px_rgba(37,99,235,0.3)] flex items-center justify-center"
           >
             <span>Ask a Question</span>
