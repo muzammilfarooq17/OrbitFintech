@@ -1,9 +1,12 @@
+import { useState } from 'react'; // Input state handle karne ke liye add kiya
 import { motion } from 'framer-motion';
 import { IoSendSharp } from "react-icons/io5";
 import { FaPlus } from "react-icons/fa6";
 
 const AskQuestion = () => {
-  
+  // Input field ki value handle karne ke liye state
+  const [question, setQuestion] = useState("");
+
   // Smooth staggered container config
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -26,18 +29,30 @@ const AskQuestion = () => {
     }
   };
 
+  // Submit hone par input clear karne ka function
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!question.trim()) return;
+
+    // Yahan aap apna API call ya submit logic daal sakte hain
+    console.log("Submitted:", question);
+
+    // Input refresh/clear karne ke liye
+    setQuestion("");
+  };
+
   return (
-    <div className="w-full min-h-screen  flex items-center justify-center px-4 overflow-hidden relative select-none">
+    <div className="w-full min-h-screen pt-3 pb-12 px-4 overflow-hidden relative select-none">
       
-      {/* Background radial accent glow for premium look */}
-      <div className="absolute w-[600px] h-[600px] bg-blue-600/10 rounded-full blur-[140px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none" />
+      {/* Background radial accent glow */}
+      <div className="absolute w-[600px] h-[600px] bg-blue-600/10 rounded-full blur-[230px] top-[35%] left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none" />
 
       {/* Main Animated Wrapper Container */}
       <motion.div 
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="w-full max-w-4xl flex flex-col items-center text-center z-10"
+        className="w-full max-w-4xl mx-auto flex flex-col items-center text-center z-10"
       >
         {/* Subtitle / Top Header */}
         <motion.span 
@@ -79,6 +94,8 @@ const AskQuestion = () => {
           {/* Main Textarea input */}
           <textarea 
             placeholder="Ask a Question....." 
+            value={question}
+            onChange={(e) => setQuestion(e.target.value)}
             className="w-full min-h-[120px] bg-transparent resize-none text-white placeholder-slate-500 font-normal text-[15px] p-2 outline-none border-none border-transparent focus:ring-0"
           />
 
@@ -88,18 +105,22 @@ const AskQuestion = () => {
             {/* Left side attachment square utility button */}
             <button 
               type="button"
-              className="w-9 h-9 bg-blue-600 hover:bg-blue-700 text-white flex items-center justify-center rounded transition-colors shadow-md active:scale-95"
+              className="w-9 h-9 bg-slate-800/80 hover:bg-slate-700/80 text-slate-300 hover:text-white flex items-center justify-center rounded-lg transition-all duration-200 border border-slate-700/50 shadow-md active:scale-95 group"
             >
-              <FaPlus className="text-[14px]" />
+              <FaPlus className="text-[14px] group-hover:rotate-90 transition-transform duration-200" />
             </button>
 
             {/* Right side Submit message system button */}
             <button 
-              type="submit"
-              className="bg-[#1d4ed8] hover:bg-blue-700 text-white font-medium text-[14px] px-6 py-2 rounded-lg flex items-center gap-2.5 transition-colors shadow-lg active:scale-95"
+              type="button"
+              onClick={handleSubmit}
+              className="bg-blue-600 hover:bg-blue-500 text-white font-medium text-[14px] px-6 py-2 rounded-lg flex items-center gap-2 transition-all duration-300 shadow-lg shadow-blue-600/20 active:scale-95 group overflow-hidden"
             >
               <span>Submit</span>
-              <IoSendSharp className="text-[13px] mt-[1px]" />
+              {/* Icon container: Default par width-0 aur hidden rhega, hover par smoothly slide-in hoga */}
+              <div className="w-0 opacity-0 max-w-0 scale-70 group-hover:w-4 group-hover:opacity-100 group-hover:max-w-[16px] group-hover:scale-100 transition-all duration-300 ease-out flex items-center justify-center">
+                <IoSendSharp className="text-[13px] text-blue-100" />
+              </div>
             </button>
 
           </div>
