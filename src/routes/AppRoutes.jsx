@@ -16,6 +16,9 @@ import AboutUs from '../pages/AboutUs';
 import Pricing from '../pages/Pricing';
 import Stats from '../pages/Stats';
 
+import VideoDemo from '../pages/VideoDemo';
+
+
 // 1. Define the Layout Component for Public Pages (with Navbar & Footer)
 const MainLayout = () => {
   return (
@@ -55,11 +58,15 @@ const AppRoutes = () => {
                 <Route path="/about" element={<AboutUs />} />
                 <Route path="/pricing" element={<Pricing />} />
                 <Route path="/stats" element={<Stats />} />
+                <Route path="/video-demo" element={<VideoDemo />} />
               </Route>
 
               {/* 3. Authentication Routes nested OUTSIDE (No Navbar or Footer) */}
               <Route path="/signup" element={<SignUp />} />
               <Route path="/login" element={<Login />} />
+
+              <Route path="/video-demo" element={<VideoDemo />} />
+              <Route path="/stats" element={<Stats />} />
 
             </Routes>
           </div>

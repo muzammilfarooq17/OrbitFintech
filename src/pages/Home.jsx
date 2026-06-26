@@ -144,7 +144,6 @@ const Home = () => {
 
   return (
     <>
-
       {/* ─── 1. HERO SECTION ─── */}
       <div
         ref={heroRef}
@@ -205,12 +204,12 @@ const Home = () => {
             </Link>
 
             <Link
-              to="/src/pages/VideoDemo.jsx"
-              className="group px-6 ml-6 py-3 bg-transparent text-white border border-gray-700 font-medium text-[20px] rounded-xl hover:bg-white/5 hover:border-gray-500 hover:scale-[1.03] active:scale-[0.97] transition-all duration-300 flex items-center justify-center"
-            >
-              <span>Watch Demo</span>
-              <FaPlay className="ml-0 w-0 opacity-0 overflow-hidden transition-all duration-300 group-hover:ml-2.5 group-hover:w-3.5 group-hover:opacity-100 text-blue-400" />
-            </Link>
+  to="/video-demo" // <-- Isko lowercase me /video-demo kar dein taake upar wale route se match kare
+  className="group px-6 ml-6 py-3 bg-transparent text-white border border-gray-700 font-medium text-[20px] rounded-xl hover:bg-white/5 hover:border-gray-500 hover:scale-[1.03] active:scale-[0.97] transition-all duration-300 flex items-center justify-center"
+>
+  <span>Watch Demo</span>
+  <FaPlay className="ml-0 w-0 opacity-0 overflow-hidden transition-all duration-300 group-hover:ml-2.5 group-hover:w-3.5 group-hover:opacity-100 text-blue-400" />
+</Link>
           </motion.div>
 
           {/* Stats card — fade up last with animated bars */}
@@ -280,7 +279,7 @@ const Home = () => {
         </motion.div>
       </div>
 
-      {/* ─── 2. FEATURES SECTION — cards zoom in staggered ─── */}
+      {/* ─── 2. FEATURES SECTION ─── */}
       <section className="w-full py-20">
         <FadeUp className="text-center mb-33">
           <h2 className="text-[48px] mt-8 font-bold text-white tracking-tight mb-3">
@@ -293,8 +292,8 @@ const Home = () => {
 
         <div className="grid grid-cols-3 gap-29 mb-18">
           {[
-            { title: 'Instant Transfer',    desc: 'Understand Your Spending With Smart Insights',   img: frame1, alt: 'Instant Transfer' },
-            { title: 'Smart Analytics',     desc: 'Understand Your Spending With Smart Insights',   img: frame2, alt: 'Smart Analytics' },
+            { title: 'Instant Transfer',     desc: 'Understand Your Spending With Smart Insights',   img: frame1, alt: 'Instant Transfer' },
+            { title: 'Smart Analytics',      desc: 'Understand Your Spending With Smart Insights',   img: frame2, alt: 'Smart Analytics' },
             { title: 'Bank Level Security', desc: 'Your Payments Protected With Advanced Security', img: frame3, alt: 'Bank Level Security' },
           ].map((card, i) => (
             <motion.div
@@ -315,18 +314,17 @@ const Home = () => {
         </div>
 
         <FadeUp delay={0.2} className="flex justify-center">
-       <Link
-  to="/features"
-  className="group px-8 py-3 bg-blue-800 text-white font-medium text-[22px] rounded-xl hover:bg-blue-500 hover:scale-[1.03] active:scale-[0.97] transition-all duration-300 shadow-[0_4px_20px_rgba(37,99,235,0.3)] flex items-center justify-center"
->
-  <span>Learn More</span>
-
-  <FaArrowRight className="ml-0 w-0 opacity-0 overflow-hidden transition-all duration-300 group-hover:ml-2 group-hover:w-4 group-hover:opacity-100 text-sm" />
-</Link>
+          <Link
+            to="/features" // <-- Fixed matching AppRoutes path
+            className="group px-8 py-3 bg-blue-800 text-white font-medium text-[22px] rounded-xl hover:bg-blue-500 hover:scale-[1.03] active:scale-[0.97] transition-all duration-300 shadow-[0_4px_20px_rgba(37,99,235,0.3)] flex items-center justify-center"
+          >
+            <span>Learn More</span>
+            <FaArrowRight className="ml-0 w-0 opacity-0 overflow-hidden transition-all duration-300 group-hover:ml-2 group-hover:w-4 group-hover:opacity-100 text-sm" />
+          </Link>
         </FadeUp>
       </section>
 
-      {/* ─── 3. PRICING SECTION — alternating left/right reveal ─── */}
+      {/* ─── 3. PRICING SECTION ─── */}
       <section className="w-full py-6">
         <FadeUp className="text-center mb-19">
           <h2 className="text-[48px] font-bold text-white tracking-tight mb-3">
@@ -408,7 +406,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* ─── 4. OUR CURRENT STATS — left/right split reveal ─── */}
+      {/* ─── 4. OUR CURRENT STATS ─── */}
       <section className="w-full py-20">
         <FadeUp className="text-center mb-14">
           <h2 className="text-[55px] font-bold text-white tracking-tight">
@@ -449,20 +447,17 @@ const Home = () => {
         </div>
 
         <FadeUp delay={0.3} className="flex justify-center mt-14">
-  <Link
-    to="/src/pages/Stats.jsx"
-    className="group px-8 py-3 bg-blue-800 text-white font-medium text-[22px] rounded-xl hover:bg-blue-500 hover:scale-[1.03] active:scale-[0.97] transition-all duration-300 shadow-[0_4px_20px_rgba(37,99,235,0.3)] flex items-center justify-center"
-  >
-    <span>Learn More</span>
-
-    <FaArrowRight className="ml-0 w-0 opacity-0 overflow-hidden transition-all duration-300 group-hover:ml-2 group-hover:w-4 group-hover:opacity-100 text-sm" />
-  </Link>
-</FadeUp>
-
-        
+          <Link
+            to="/stats" // <-- Fixed from '/src/pages/Stats.jsx' to '/stats'
+            className="group px-8 py-3 bg-blue-800 text-white font-medium text-[22px] rounded-xl hover:bg-blue-500 hover:scale-[1.03] active:scale-[0.97] transition-all duration-300 shadow-[0_4px_20px_rgba(37,99,235,0.3)] flex items-center justify-center"
+          >
+            <span>Learn More</span>
+            <FaArrowRight className="ml-0 w-0 opacity-0 overflow-hidden transition-all duration-300 group-hover:ml-2 group-hover:w-4 group-hover:opacity-100 text-sm" />
+          </Link>
+        </FadeUp>
       </section>
 
-      {/* ─── 5. ENTERPRISE SECURITY — zoom in cards ─── */}
+      {/* ─── 5. ENTERPRISE SECURITY ─── */}
       <section className="w-full py-20">
         <FadeUp className="text-center mb-12">
           <h2 className="text-[48px] font-bold text-white tracking-tight mb-3">
@@ -493,17 +488,16 @@ const Home = () => {
 
         <FadeUp delay={0.25} className="flex justify-center">
           <Link
-  to="/src/pages/Security.jsx"
-  className="group px-8 py-3 bg-blue-600 text-white font-medium text-[18px] rounded-xl hover:bg-blue-500 hover:scale-[1.02] active:scale-[0.97] transition-all duration-300 shadow-[0_4px_20px_rgba(37,99,235,0.3)] flex items-center justify-center"
->
-  <span>Explore Security</span>
-
-  <FiShield className="ml-0 w-0 opacity-0 overflow-hidden transition-all duration-300 group-hover:ml-2 group-hover:w-5 group-hover:opacity-100" />
-</Link>
+            to="/security" // <-- Fixed from '/src/pages/Security.jsx' to '/security'
+            className="group px-8 py-3 bg-blue-600 text-white font-medium text-[18px] rounded-xl hover:bg-blue-500 hover:scale-[1.02] active:scale-[0.97] transition-all duration-300 shadow-[0_4px_20px_rgba(37,99,235,0.3)] flex items-center justify-center"
+          >
+            <span>Explore Security</span>
+            <FiShield className="ml-0 w-0 opacity-0 overflow-hidden transition-all duration-300 group-hover:ml-2 group-hover:w-5 group-hover:opacity-100" />
+          </Link>
         </FadeUp>
       </section>
 
-      {/* ─── 6. GET STARTED STEPS — zigzag slide in ─── */}
+      {/* ─── 6. GET STARTED STEPS ─── */}
       <section className="w-full py-20">
         <FadeUp className="text-center mb-14">
           <h2 className="text-[48px] font-bold text-white tracking-tight mb-1">
@@ -515,8 +509,7 @@ const Home = () => {
         </FadeUp>
 
         <div className="flex flex-col gap-10">
-
-          {/* Step 01 — slides from left */}
+          {/* Step 01 */}
           <FadeLeft delay={0}>
             <div className="flex flex-col gap-4">
               <div className="flex items-center gap-3">
@@ -532,7 +525,7 @@ const Home = () => {
             </div>
           </FadeLeft>
 
-          {/* Step 02 — slides from right */}
+          {/* Step 02 */}
           <FadeRight delay={0.1}>
             <div className="flex flex-col items-end gap-4">
               <div className="flex items-center gap-3">
@@ -548,7 +541,7 @@ const Home = () => {
             </div>
           </FadeRight>
 
-          {/* Step 03 — slides from left */}
+          {/* Step 03 */}
           <FadeLeft delay={0.2}>
             <div className="flex flex-col gap-4">
               <div className="flex items-center gap-3">
@@ -563,22 +556,20 @@ const Home = () => {
               </div>
             </div>
           </FadeLeft>
-
         </div>
 
         <FadeUp delay={0.3} className="flex justify-center mt-14">
           <Link
-  to="/signup"
-  className="group px-8 py-3 bg-blue-600 text-white font-medium text-[18px] rounded-xl hover:bg-blue-500 hover:scale-[1.02] active:scale-[0.97] transition-all duration-300 shadow-[0_4px_20px_rgba(37,99,235,0.3)] flex items-center justify-center"
->
-  <span>Get Started Free</span>
-
-  <FiArrowUpRight className="ml-0 w-0 opacity-0 overflow-hidden transition-all duration-300 group-hover:ml-2 group-hover:w-5 group-hover:opacity-100" />
-</Link>
+            to="/signup"
+            className="group px-8 py-3 bg-blue-600 text-white font-medium text-[18px] rounded-xl hover:bg-blue-500 hover:scale-[1.02] active:scale-[0.97] transition-all duration-300 shadow-[0_4px_20px_rgba(37,99,235,0.3)] flex items-center justify-center"
+          >
+            <span>Get Started Free</span>
+            <FiArrowUpRight className="ml-0 w-0 opacity-0 overflow-hidden transition-all duration-300 group-hover:ml-2 group-hover:w-5 group-hover:opacity-100" />
+          </Link>
         </FadeUp>
       </section>
 
-      {/* ─── 7. FAQ SECTION — staggered fade up per row ─── */}
+      {/* ─── 7. FAQ SECTION ─── */}
       <section className="w-full py-20">
         <FadeUp className="text-center mb-15">
           <h2 className="text-[46px] font-bold text-white tracking-tight mb-0">
@@ -627,15 +618,14 @@ const Home = () => {
 
         <FadeUp delay={0.3} className="flex justify-center mt-14">
           <Link
-  to="/ask-question" // <-- Sahi URL path jo AppRoutes mein defined hai
-  className="group px-8 py-3 mt-11 bg-blue-600 text-white font-medium text-[18px] rounded-xl hover:bg-blue-500 hover:scale-[1.02] active:scale-[0.97] transition-all duration-300 shadow-[0_4px_20px_rgba(37,99,235,0.3)] flex items-center justify-center"
->
-  <span>Ask a Question</span>
-  <FiMessageCircle className="ml-0 w-0 opacity-0 overflow-hidden transition-all duration-300 group-hover:ml-2 group-hover:w-5 group-hover:opacity-100" />
-</Link>
+            to="/ask-question" // <-- Verified matching AppRoutes path
+            className="group px-8 py-3 mt-11 bg-blue-600 text-white font-medium text-[18px] rounded-xl hover:bg-blue-500 hover:scale-[1.02] active:scale-[0.97] transition-all duration-300 shadow-[0_4px_20px_rgba(37,99,235,0.3)] flex items-center justify-center"
+          >
+            <span>Ask a Question</span>
+            <FiMessageCircle className="ml-0 w-0 opacity-0 overflow-hidden transition-all duration-300 group-hover:ml-2 group-hover:w-5 group-hover:opacity-100" />
+          </Link>
         </FadeUp>
       </section>
-
     </>
   );
 };
