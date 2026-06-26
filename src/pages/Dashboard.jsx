@@ -1,13 +1,17 @@
 import { useState, useEffect } from 'react';
-import { getAuth, signOut } from 'firebase/auth';
-import { useNavigate } from 'react-router-dom';
+import { getAuth, signOut } from 'firebase/auth'; 
+import { useNavigate, Link } from 'react-router-dom'; // Link add kiya hai home navigation ke liye
 import DashboardPreloader from './DashboardPreloader';
-import { FiSettings, FiBell } from 'react-icons/fi';
+import { FiSettings, FiBell, FiMoreVertical, FiHome, FiCreditCard, FiTruck, FiShoppingBag, FiActivity, FiArrowLeft } from 'react-icons/fi';
 
 const Dashboard = () => {
   const [isLodingDashboard, setIsLoadingDashboard] = useState(true);
   const auth = getAuth();
   const navigate = useNavigate();
+
+  // Dynamically checking current user details
+  const currentUser = auth.currentUser;
+  const userName = currentUser?.displayName || currentUser?.email?.split('@')[0] || 'User';
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -31,8 +35,28 @@ const Dashboard = () => {
       
       {/* DASHBOARD NAVBAR */}
       <header className="h-20 border-b border-white/[0.04] bg-[#060b24] px-12 flex justify-between items-center sticky top-0 z-40">
-        <div className="flex items-center gap-12">
-          <div className="text-xl font-black tracking-wider text-white">ORBIT</div>
+        <div className="flex items-center gap-8">
+          
+          {/* HOVER BACK TO HOME BUTTON */}
+          <Link 
+            to="/" 
+            className="group flex items-center gap-2 bg-white/5 hover:bg-blue-600/20 border border-white/[0.05] hover:border-blue-500/40 px-3 py-2 rounded-xl transition-all duration-300 ease-in-out"
+            title="Go to Home"
+          >
+            <FiArrowLeft className="w-5 h-5 text-slate-400 group-hover:text-blue-400 transition-colors" />
+            {/* Yeh text sirf tabhi khulega aur dikhega jab user mouse upar lekar aayega */}
+            <span className="max-w-0 overflow-hidden group-hover:max-w-[100px] text-xs font-semibold text-slate-400 group-hover:text-blue-400 transition-all duration-500 ease-in-out whitespace-nowrap">
+              Back Home
+            </span>
+          </Link>
+
+          <div className="flex items-center">
+            <img 
+              src="/src/assets/images/Logooo.jpeg" 
+              alt="ORBIT" 
+              className="h-12 w-auto object-contain brightness-110 contrast-125"
+            />
+          </div>
           <nav className="flex items-center gap-8 text-[15px] font-medium text-slate-400">
             <span className="text-white border-b-2 border-blue-500 pb-1 cursor-pointer">Overview</span>
             <span className="hover:text-white transition-colors cursor-pointer">Transactions</span>
@@ -60,7 +84,7 @@ const Dashboard = () => {
         
         {/* HEADER GREETING */}
         <div className="flex justify-between items-center">
-          <h1 className="text-3xl font-semibold tracking-wide">Hello ...</h1>
+          <h1 className="text-3xl font-semibold tracking-wide capitalize">Hello {userName}!</h1>
           <div className="bg-[#0b1231] border border-white/[0.05] p-1 rounded-xl flex gap-1 text-[13px] font-medium text-slate-400">
             <button className="bg-blue-600 text-white px-4 py-1.5 rounded-lg">This month</button>
             <button className="px-4 py-1.5 rounded-lg hover:text-white">Last month</button>
@@ -121,47 +145,180 @@ const Dashboard = () => {
           </div>
         </div>
 
-        {/* DATA VISUALIZATION SECTIONS (PIE CHART & LIST) */}
+        {/* DATA VISUALIZATION SECTIONS */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <div className="bg-[#060c29] border border-dashed border-blue-500/30 rounded-2xl p-6 lg:col-span-1 flex flex-col items-center">
+          
+          {/* LEFT COLUMN: PIE CHART + CATEGORY LIST */}
+          <div className="bg-[#060c29] border border-white/[0.04] rounded-2xl p-6 lg:col-span-1 flex flex-col items-center">
             <h4 className="text-sm font-semibold text-slate-300 w-full mb-6">Expenses by category</h4>
-            <div className="w-44 h-44 relative flex justify-center items-center">
-              {/* Doughnut structure layout using raw pure CSS borders alignment matching your pic */}
-              <div className="w-full h-full rounded-full border-[24px] border-t-red-500 border-r-purple-500 border-b-cyan-500 border-l-green-600 animate-spin-[spin_10s_linear_infinite]" />
+            
+            {/* Doughnut Chart Display */}
+            <div className="w-44 h-44 relative flex justify-center items-center mb-8">
+              <div className="w-full h-full rounded-full border-[22px] border-t-red-500 border-r-purple-500 border-b-cyan-500 border-l-green-600 shadow-[0_0_20px_rgba(59,130,246,0.1)]" />
               <div className="absolute text-center">
                 <span className="text-xs text-slate-400 block font-medium">Main Area</span>
                 <span className="text-lg font-bold">74%</span>
               </div>
             </div>
-          </div>
 
-          <div className="bg-[#060c29] border border-dashed border-blue-500/30 rounded-2xl p-6 lg:col-span-2">
-            <h4 className="text-sm font-semibold text-slate-300 mb-1">Last transactions</h4>
-            <p className="text-xs text-slate-500 mb-6">Check your last transactions</p>
-            <div className="space-y-4">
-              <div className="flex justify-between items-center text-sm border-b border-white/[0.03] pb-3">
+            {/* Category Details List */}
+            <div className="w-full space-y-3.5 border-t border-white/[0.04] pt-5">
+              <div className="flex justify-between items-center text-sm">
                 <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-full bg-white/5 flex justify-center items-center text-xs font-bold">OR</div>
-                  <div>
-                    <p className="font-medium">Orlando Rodrigues</p>
-                    <p className="text-xs text-slate-500">Bank account • 2024/04/01</p>
+                  <div className="w-8 h-8 rounded-xl bg-purple-500/10 flex justify-center items-center text-purple-400">
+                    <FiHome className="w-4 h-4" />
                   </div>
+                  <span className="text-slate-300 font-medium">House</span>
                 </div>
-                <span className="text-green-400 font-semibold">+$750.00</span>
+                <span className="font-semibold text-slate-400">41,35%</span>
               </div>
 
               <div className="flex justify-between items-center text-sm">
                 <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-full bg-red-600/20 text-red-500 flex justify-center items-center text-[10px] font-bold">N</div>
-                  <div>
-                    <p className="font-medium">Netflix</p>
-                    <p className="text-xs text-slate-500">Credit card • 2024/03/29</p>
+                  <div className="w-8 h-8 rounded-xl bg-red-500/10 flex justify-center items-center text-red-400">
+                    <FiCreditCard className="w-4 h-4" />
                   </div>
+                  <span className="text-slate-300 font-medium">Credit card</span>
                 </div>
-                <span className="text-white font-semibold">-$9.90</span>
+                <span className="font-semibold text-slate-400">21,51%</span>
+              </div>
+
+              <div className="flex justify-between items-center text-sm">
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-xl bg-cyan-500/10 flex justify-center items-center text-cyan-400">
+                    <FiTruck className="w-4 h-4" />
+                  </div>
+                  <span className="text-slate-300 font-medium">Transportation</span>
+                </div>
+                <span className="font-semibold text-slate-400">13,47%</span>
+              </div>
+
+              <div className="flex justify-between items-center text-sm">
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-xl bg-green-500/10 flex justify-center items-center text-green-400">
+                    <FiShoppingBag className="w-4 h-4" />
+                  </div>
+                  <span className="text-slate-300 font-medium">Groceries</span>
+                </div>
+                <span className="font-semibold text-slate-400">9,97%</span>
+              </div>
+
+              <div className="flex justify-between items-center text-sm">
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-xl bg-yellow-500/10 flex justify-center items-center text-yellow-400">
+                    <FiActivity className="w-4 h-4" />
+                  </div>
+                  <span className="text-slate-300 font-medium">Shopping</span>
+                </div>
+                <span className="font-semibold text-slate-400">3,35%</span>
               </div>
             </div>
           </div>
+
+          {/* RIGHT COLUMN: EXPANDED TRANSACTIONS LIST */}
+          <div className="bg-[#060c29] border border-white/[0.04] rounded-2xl p-6 lg:col-span-2 flex flex-col justify-between">
+            <div>
+              <h4 className="text-sm font-semibold text-slate-300 mb-1">Last transactions</h4>
+              <p className="text-xs text-slate-500 mb-6">Check your last transactions</p>
+              
+              <div className="space-y-4">
+                {/* Item 1 */}
+                <div className="flex justify-between items-center text-sm border-b border-white/[0.03] pb-3.5">
+                  <div className="flex items-center gap-3">
+                    <div className="w-9 h-9 rounded-full bg-blue-500/10 text-blue-400 flex justify-center items-center text-xs font-bold border border-blue-500/20">OR</div>
+                    <div>
+                      <p className="font-medium text-slate-200">Orlando Rodrigues</p>
+                      <p className="text-xs text-slate-500">Bank account • 2024/04/01</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-4">
+                    <span className="text-green-400 font-semibold">+$750.00</span>
+                    <FiMoreVertical className="text-slate-500 hover:text-white cursor-pointer w-4 h-4" />
+                  </div>
+                </div>
+
+                {/* Item 2 */}
+                <div className="flex justify-between items-center text-sm border-b border-white/[0.03] pb-3.5">
+                  <div className="flex items-center gap-3">
+                    <div className="w-9 h-9 rounded-full bg-red-600/10 text-red-500 flex justify-center items-center text-xs font-bold border border-red-500/20">NF</div>
+                    <div>
+                      <p className="font-medium text-slate-200">Netflix</p>
+                      <p className="text-xs text-slate-500">Credit card • 2024/03/29</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-4">
+                    <span className="text-slate-300 font-semibold">-$9.90</span>
+                    <FiMoreVertical className="text-slate-500 hover:text-white cursor-pointer w-4 h-4" />
+                  </div>
+                </div>
+
+                {/* Item 3 */}
+                <div className="flex justify-between items-center text-sm border-b border-white/[0.03] pb-3.5">
+                  <div className="flex items-center gap-3">
+                    <div className="w-9 h-9 rounded-full bg-green-500/10 text-green-400 flex justify-center items-center text-xs font-bold border border-green-500/20">SP</div>
+                    <div>
+                      <p className="font-medium text-slate-200">Spotify</p>
+                      <p className="text-xs text-slate-500">Credit card • 2024/03/29</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-4">
+                    <span className="text-slate-300 font-semibold">-$19.90</span>
+                    <FiMoreVertical className="text-slate-500 hover:text-white cursor-pointer w-4 h-4" />
+                  </div>
+                </div>
+
+                {/* Item 4 */}
+                <div className="flex justify-between items-center text-sm border-b border-white/[0.03] pb-3.5">
+                  <div className="flex items-center gap-3">
+                    <div className="w-9 h-9 rounded-full bg-emerald-500/10 text-emerald-400 flex justify-center items-center text-xs font-bold border border-emerald-500/20">CA</div>
+                    <div>
+                      <p className="font-medium text-slate-200">Carl Andrew</p>
+                      <p className="text-xs text-slate-500">Bank account • 2024/03/27</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-4">
+                    <span className="text-green-400 font-semibold">+$400.00</span>
+                    <FiMoreVertical className="text-slate-500 hover:text-white cursor-pointer w-4 h-4" />
+                  </div>
+                </div>
+
+                {/* Item 5 */}
+                <div className="flex justify-between items-center text-sm border-b border-white/[0.03] pb-3.5">
+                  <div className="flex items-center gap-3">
+                    <div className="w-9 h-9 rounded-full bg-orange-500/10 text-orange-400 flex justify-center items-center text-xs font-bold border border-orange-500/20">CM</div>
+                    <div>
+                      <p className="font-medium text-slate-200">Carrefour Market</p>
+                      <p className="text-xs text-slate-500">Credit card • 2024/03/26</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-4">
+                    <span className="text-slate-300 font-semibold">-$64.33</span>
+                    <FiMoreVertical className="text-slate-500 hover:text-white cursor-pointer w-4 h-4" />
+                  </div>
+                </div>
+
+                {/* Item 6 */}
+                <div className="flex justify-between items-center text-sm">
+                  <div className="flex items-center gap-3">
+                    <div className="w-9 h-9 rounded-full bg-yellow-500/10 text-yellow-500 flex justify-center items-center text-xs font-bold border border-yellow-500/20">AM</div>
+                    <div>
+                      <p className="font-medium text-slate-200">Amazon</p>
+                      <p className="text-xs text-slate-500">Credit card • 2024/03/24</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-4">
+                    <span className="text-slate-300 font-semibold">-$147.90</span>
+                    <FiMoreVertical className="text-slate-500 hover:text-white cursor-pointer w-4 h-4" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <button className="w-full text-center text-xs text-blue-500 hover:text-blue-400 font-medium pt-4 transition-colors">
+              View All Transactions
+            </button>
+          </div>
+
         </div>
 
       </main>
