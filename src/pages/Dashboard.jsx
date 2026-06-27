@@ -51,11 +51,26 @@ const Dashboard = () => {
           </Link>
 
           <div className="flex items-center">
-            <img 
-              src="/public/imagE/Logooo.jpeg" 
-              alt="ORBIT" 
-              className="h-12 w-auto object-contain brightness-110 contrast-125"
-            />
+            {/* ORBIT SVG LOGO */}
+        <svg
+          className="h-16 w-auto text-white select-none filter drop-shadow-[0_0_10px_rgba(6,182,212,0.15)]"
+          viewBox="0 0 240 120"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            <filter id="glow" x="-30%" y="-30%" width="150%" height="150%">
+              <feGaussianBlur stdDeviation="7" result="blur" />
+              <feComposite in="SourceGraphic" in2="blur" operator="over" />
+            </filter>
+          </defs>
+          <ellipse cx="120" cy="60" rx="109" ry="32" stroke="currentColor" strokeWidth="3.5" transform="rotate(-16 120 60)" />
+          <circle cx="212" cy="21" r="9" fill="#00f0ff" filter="url(#glow)" className="animate-pulse" />
+          <circle cx="20" cy="91" r="13" fill="#00f0ff" filter="url(#glow)" className="animate-pulse" />
+          <text x="120" y="72" fill="currentColor" fontSize="46" fontWeight="900" fontFamily="system-ui, -apple-system, sans-serif" textAnchor="middle" letterSpacing="-1">
+            ORBIT
+          </text>
+        </svg>
           </div>
           <nav className="flex items-center gap-8 text-[15px] font-medium text-slate-400">
             <span className="text-white border-b-2 border-blue-500 pb-1 cursor-pointer">Overview</span>
