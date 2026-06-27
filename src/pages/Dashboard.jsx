@@ -52,7 +52,7 @@ const Dashboard = () => {
 
           <div className="flex items-center">
             <img 
-              src="/src/assets/images/Logooo.jpeg" 
+              src="/public/imagE/Logooo.jpeg" 
               alt="ORBIT" 
               className="h-12 w-auto object-contain brightness-110 contrast-125"
             />
