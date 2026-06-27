@@ -2,6 +2,9 @@ import { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Outlet, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from '../components/context/AuthContext';
 
+// Scroll To Top Utility Import kiya
+import ScrollToTop from '../components/utils/ScrollToTop';
+
 import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
 import Preloader from '../components/layout/Preloader';
@@ -47,6 +50,9 @@ const AppRoutesContent = () => {
         <Preloader onComplete={() => setIsLoading(false)} />
       ) : (
         <Router>
+          {/* Router ke andar sabse pehle isko inject kiya taake har page change par view top pr chala jaye */}
+          <ScrollToTop />
+
           <div className="min-h-screen bg-[#05091c] bg-gradient-to-tr from-[#05091c] via-[#0b153a] to-[#030712] text-orbit-text flex flex-col font-sans">
             <Routes>
               
@@ -94,5 +100,5 @@ const AppRoutes = () => {
     </AuthProvider>
   );
 };
-
+ 
 export default AppRoutes;
