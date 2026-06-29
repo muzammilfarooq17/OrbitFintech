@@ -6,7 +6,6 @@ import { motion } from "framer-motion";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-// Register ScrollTrigger safely
 gsap.registerPlugin(ScrollTrigger);
 
 const PricingSection = () => {
@@ -58,7 +57,6 @@ const PricingSection = () => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // 1. GSAP: Comparison Table Reveal & Sequential Row Stagger
       gsap.fromTo(".comparison-title-animate", 
         { opacity: 0, y: 40 },
         { opacity: 1, y: 0, duration: 0.8, scrollTrigger: { trigger: ".comparison-title-animate", start: "top 85%" } }
@@ -80,7 +78,6 @@ const PricingSection = () => {
         }
       );
 
-      // 2. GSAP: FAQ Section Headline and staggered card entries
       gsap.fromTo(".faq-title-animate",
         { opacity: 0, y: 40 },
         { opacity: 1, y: 0, duration: 0.8, scrollTrigger: { trigger: ".faq-title-animate", start: "top 85%" } }
@@ -101,18 +98,17 @@ const PricingSection = () => {
 
     }, containerRef);
 
-    return () => ctx.revert(); // Clean up triggers smoothly
+    return () => ctx.revert();
   }, []);
 
   return (
-    <div ref={containerRef} className="w-full overflow-hidden ">
+    <div ref={containerRef} className="w-full overflow-hidden">
       
-      {/* 1. HERO & CARDS (Framer Motion For Instant Initial View Load) */}
-      <section className="text-gray-300 py-20 flex flex-col justify-center items-center font-sans w-full select-none">
+      {/* 1. HERO & CARDS */}
+      <section className="text-gray-300 pt-4 pb-20 flex flex-col justify-center items-center font-sans w-full select-none">
         
-        {/* Header Section Animation */}
         <motion.div 
-          className="text-center mb-15 w-[1200px]"
+          className="text-center mb-10 w-[1200px]"
           initial={{ opacity: 0, y: -40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
@@ -128,7 +124,7 @@ const PricingSection = () => {
           </p>
         </motion.div>
 
-        {/* Pricing Grid Layout Animation */}
+        {/* Pricing Cards */}
         <div className="grid grid-cols-3 gap-8 w-[1200px] px-4 items-stretch mb-24">
           {plans.map((plan, index) => (
             <motion.div
@@ -197,7 +193,7 @@ const PricingSection = () => {
           ))}
         </div>
 
-        {/* 2. PRICING COMPARISON TABLE SECTION (GSAP ScrollTrigger Dynamic Effects) */}
+        {/* 2. COMPARISON TABLE */}
         <div ref={tableWrapperRef} className="w-[1200px] px-4 flex flex-col items-center pt-10">
           <h2 className="comparison-title-animate text-white text-5xl font-bold tracking-tight mb-8 text-center opacity-0">
             Pricing Comparison
@@ -236,7 +232,7 @@ const PricingSection = () => {
 
       </section>
 
-      {/* 3. FAQ SECTION (GSAP Advanced Scroll Animations) */}
+      {/* 3. FAQ SECTION */}
       <section ref={faqWrapperRef} className="w-full py-20 flex flex-col items-center">
         <div className="faq-title-animate text-center mb-15 opacity-0">
           <h2 className="text-[46px] font-bold text-white tracking-tight mb-0">

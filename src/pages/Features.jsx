@@ -8,8 +8,8 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 // Image assets matching your exact folder tree setup
-import cardBlue from '../assets/images/Card 1 Black.png'; 
-import cardBlack from '../assets/images/Card 2 Blue.png'; 
+import cardBlue from '../assets/images/Card 1 (1).png'; 
+import cardBlack from '../assets/images/About us 2.png'; 
 
 // Grid Vector Icons imported based on your folder structure
 import vectorBill from '../assets/vectors/Vector 1.png';
@@ -123,10 +123,10 @@ const Features = () => {
   }, []);
 
   return (
-    <div ref={containerRef} className="w-full flex flex-col gap-24 overflow-hidden ">
+    <div ref={containerRef} className="w-full flex flex-col gap-24  ">
       
-      {/* SECTION 1: HERO CONTAINER */}
-      <section className="min-h-[85vh] w-full flex items-center justify-between gap-16 py-12 select-none overflow-hidden max-w-7xl mx-auto">
+      {/* SECTION 1: HERO CONTAINER — Fixed layout alignment and heights */}
+      <section className="min-h-[calc(100vh-80px)] w-full flex items-start justify-between gap-16 pt-1 pb-6 select-none max-w-7xl mx-auto">
         
         {/* LEFT SIDE: TEXT CONTENT & FEATURES */}
         <motion.div 
@@ -139,9 +139,9 @@ const Features = () => {
             Powerful Features <br />
             for Modern
           </h2>
-          <h1 className="text-[110px] font-black uppercase bg-gradient-to-r from-blue-500 via-sky-400 to-blue-600 bg-clip-text text-transparent drop-shadow-[0_4px_20px_rgba(37,99,235,0.3)] mb-4">
-            Banking
-          </h1>
+          <h1 className="text-[110px] font-black uppercase bg-gradient-to-r from-blue-800 via-blue-800 to-blue-800 bg-clip-text text-transparent drop-shadow-[0_4px_20px_rgba(30,64,175,0.4)] mb-4">
+  Banking
+</h1>
 
           <ul className="flex flex-col gap-4 max-w-xl">
             {featureList.map((feature, index) => (
@@ -161,40 +161,40 @@ const Features = () => {
           </ul>
         </motion.div>
 
-        {/* RIGHT SIDE: FIXED OVERLAPPING CARDS FOR PC/LAPTOP */}
-        <div className="w-1/2 relative h-[750px] flex items-center justify-center">
-          
-          {/* BLUE CARD (Bottom / Back Layer) */}
-          <motion.div 
-            className="w-[780px] z-10 filter drop-shadow-[-15px_25px_30px_rgba(0,0,0,0.6)]"
-            style={{ transformOrigin: 'center' }}
-            initial={{ opacity: 0, x: -140, y: 140, rotate: -5 }}
-            animate={{ opacity: 1, x: -80, y: 30, rotate: 3 }} 
-            transition={{ duration: 1.1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <img 
-              src={cardBlack} 
-              alt="Orbit Blue Card" 
-              className="w-full h-auto rounded-[24px] pointer-events-none select-none"
-            />
-          </motion.div>
+        {/* RIGHT SIDE: FIXED OVERLAPPING CARDS */}
+<div className="w-1/2 relative h-[550px] flex items-center justify-center">
+  
+  {/* BLUE CARD (Bottom / Back Layer) */}
+  <motion.div 
+    className="absolute w-[590px] z-10 filter drop-shadow-[-15px_25px_30px_rgba(0,0,0,0.6)]"
+    style={{ transformOrigin: 'center' }}
+    initial={{ opacity: 0, x: -140, y: 140, rotate: -5 }}
+    animate={{ opacity: 1, x: -120, y: 220, rotate: -6 }} 
+    transition={{ duration: 1.1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+  >
+    <img 
+      src={cardBlack} 
+      alt="Orbit Blue Card" 
+      className="w-full h-auto rounded-[24px] pointer-events-none select-none"
+    />
+  </motion.div>
 
-          {/* BLACK CARD (Top / Front Layer) */}
-          <motion.div 
-            className="absolute w-[630px] z-20 filter drop-shadow-[-25px_25px_35px_rgba(0,0,0,0.8)]"
-            style={{ transformOrigin: 'center' }}
-            initial={{ opacity: 0, x: 140, y: -100, rotate: 8 }}
-            animate={{ opacity: 1, x: 10, y: -220, rotate: 3 }} 
-            transition={{ duration: 1.1, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <img 
-              src={cardBlue} 
-              alt="Orbit Black Card" 
-              className="w-full h-auto rounded-[24px] pointer-events-none select-none"
-            />
-          </motion.div>
+  {/* BLACK CARD (Top / Front Layer) */}
+  <motion.div 
+    className="absolute w-[680px] z-10 filter drop-shadow-[-25px_25px_35px_rgba(0,0,0,0.8)]"
+    style={{ transformOrigin: 'center' }}
+    initial={{ opacity: 0, x: 100, y: -40, rotate: 8 }}
+    animate={{ opacity: 1, x: 20, y: -70, rotate: -8 }} 
+    transition={{ duration: 1.1, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
+  >
+    <img 
+      src={cardBlue} 
+      alt="Orbit Black Card" 
+      className="w-full h-auto rounded-[22px] pointer-events-none select-none"
+    />
+  </motion.div>
 
-        </div>
+</div>
       </section>
 
       {/* SECTION 2: OUR TOP FEATURES GRID SECTION */}
@@ -256,7 +256,7 @@ const Features = () => {
         </div>
 
         <div className="matrix-box-animate w-full bg-[#0c152b] border border-slate-800/60 rounded-2xl p-16 flex flex-col items-center shadow-2xl opacity-0">
-          
+            
           <div className="grid grid-cols-3 w-full pb-5 border-b border-slate-800 text-left font-bold mb-3 text-[29px] gap-35 ml-19">
             <div className="text-white">Features / Experiences</div>
             <div className="text-blue-600 uppercase text-4xl ">Orbit</div>

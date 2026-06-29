@@ -145,10 +145,11 @@ const Home = () => {
   return (
     <>
       {/* ─── 1. HERO SECTION ─── */}
-      <div
-        ref={heroRef}
-        className="w-full min-h-[calc(100vh-80px)] flex items-center justify-between py-8 gap-8 overflow-hidden select-none"
-      >
+<div
+  ref={heroRef}
+
+  className="w-full min-h-[calc(100vh-80px)] flex items-start justify-between pt-8 pb-8 gap-8 overflow-hidden select-none"
+>
         {/* LEFT — staggered slide-up on load */}
         <motion.div className="w-[48%]" style={{ y: heroY, opacity: heroOpacity }}>
 
